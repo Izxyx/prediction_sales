@@ -15,7 +15,6 @@ st.set_page_config(page_title='Sales Prediction',page_icon='random')
 with open(css_file) as f:
     st.markdown('<style>{}</style>'.format(f.read()), unsafe_allow_html=True)
 
-
 # Main
 def main():
     st.title('Prediction Store Sales')
