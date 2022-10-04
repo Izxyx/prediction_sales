@@ -9,5 +9,5 @@ port = $PORT\n\
 primaryColor = '#ffe400'\n\
 backgroundColor = '#000000'\n\
 secondaryBackgroundColor = '#ffe400'\n\
-textColor = '#000000'\n\
+textColor = '#ffffff'\n\
 " > ~/.streamlit/config.toml
