@@ -8,16 +8,12 @@ from PIL import Image
 current_dir = Path(__file__).parent if "__file__" in locals() else Path.cwd()
 css_file = current_dir/'styles'/'main.css'
 
-#Settings
-PAGE_TITLE = 'Sales Prediction'
-SOCIAL_MEDIA = {
-    'Linkedin': 'https://www.linkedin.com/in/arqhp/',
-    'Github': 'https://github.com/Izxyx',
-    'Instagram': 'https://www.instagram.com/arq_v/'
-}
+# Header
+with open(css_file) as f:
+    st.markdown('<style>{}</style>'.format(f.read()), unsafe_allow_html=True)
 
 # Configuration
-st.set_page_config(page_title=PAGE_TITLE,page_icon=':dashboard:')
+st.set_page_config(page_title='Sales Prediction',page_icon='random')
 
 # Main
 def main():
@@ -48,7 +44,7 @@ def main():
         st.image(big)
 
 def main2():
-    if st.button('RUN',key=5):
+    if st.button('------------->   PREDICT   <-------------',key=5):
         result = predict_model.predict([[square_meters,stockroom_meters,
         salesfloor_meters,useless_meters,
         shelfs,double_shelfs,registers,
@@ -57,11 +53,11 @@ def main2():
         if square_meters != 0 and salesfloor_meters != 0 and shelfs != 0 and double_shelfs != 0 and registers != 0 and entrances != 0:
             st.success('Super, You did it')
             st.title('\n')
-            st.header('Venta Anual:')
+            st.header('Anual Sales:')
             st.title(str(result[0]) + ' Millions')
             st.title('\n')
-            st.header('Venta Mensual')
-            st.title(str(result[0]) + ' Millions')
+            st.header('Month Sales')
+            st.title(str(result[0]/12) + ' Millions')
             st.balloons()
         else:
             st.error('You should input all the parameters')
