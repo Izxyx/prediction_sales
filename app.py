@@ -55,8 +55,13 @@ def main2():
         entrances]])
 
         if square_meters != 0 and salesfloor_meters != 0 and shelfs != 0 and double_shelfs != 0 and registers != 0 and entrances != 0:
-            st.title(str(result[0]) + ' Millions')
             st.success('Super, You did it')
+            st.title('\n')
+            st.header('Venta Anual:')
+            st.title(str(result[0]) + ' Millions')
+            st.title('\n')
+            st.header('Venta Mensual')
+            st.title(str(result[0]) + ' Millions')
             st.balloons()
         else:
             st.error('You should input all the parameters')
