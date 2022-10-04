@@ -8,12 +8,13 @@ from PIL import Image
 current_dir = Path(__file__).parent if "__file__" in locals() else Path.cwd()
 css_file = current_dir/'styles'/'main.css'
 
+# Configuration
+st.set_page_config(page_title='Sales Prediction',page_icon='random')
+
 # Header
 with open(css_file) as f:
     st.markdown('<style>{}</style>'.format(f.read()), unsafe_allow_html=True)
 
-# Configuration
-st.set_page_config(page_title='Sales Prediction',page_icon='random')
 
 # Main
 def main():
