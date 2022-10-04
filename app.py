@@ -22,14 +22,30 @@ st.set_page_config(page_title=PAGE_TITLE,page_icon=':dashboard:')
 # Main
 def main():
     st.title('Prediction Store Sales')
+
+
     with st.expander("Project's Description"):
         st.write(''' 
-            The chart plot shows a tipycal retail store dessign.
+            The plot shows a tipycal retail store dessign.
             You *must* enter the size and fortniture parameters 
             to predict the sales of the store
         ''')
-    image = Image.open('./assets/example_areas.png')
-    st.image(image)
+    options = st.selectbox(
+        'Examples:',
+        ['Small','Medium','Big'])
+
+    medium = Image.open('./assets/example_areas.png')
+    small = Image.open('./assets/example_areas2.png')
+    big = Image.open('./assets/example_areas3.png')
+    if options == 'Small':
+        st.write(options + ' store example')
+        st.image(small)
+    if options == 'Medium':
+        st.write(options + ' store example')
+        st.image(medium)
+    if options == 'Big':
+        st.write(options + ' store example')
+        st.image(big)
 
 def main2():
     if st.button('RUN',key=5):
@@ -39,7 +55,7 @@ def main2():
         entrances]])
 
         if square_meters != 0 and salesfloor_meters != 0 and shelfs != 0 and double_shelfs != 0 and registers != 0 and entrances != 0:
-            st.title(str(result[0]/1000000)[0:5] + ' Millions')
+            st.title(str(result[0]) + ' Millions')
             st.success('Super, You did it')
             st.balloons()
         else:
@@ -55,11 +71,10 @@ if __name__ == '__main__':
             st.image(image2)
 
         st.header('Input store parameters:')
-        st.write(''' ***Obligatory*''') 
+        st.write(''' ***Obligatory Imput*''') 
 
         square_meters = st.number_input('How size is the store? **')
         st.write(square_meters,' m2')
-
 
         stockroom_meters = st.number_input('How size is the stockroom?')
         st.write(stockroom_meters,' m2')
