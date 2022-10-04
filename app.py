@@ -1,0 +1,77 @@
+#Import libraries
+from pathlib import Path
+import streamlit as st
+import pickle
+from PIL import Image
+
+
+
+# Main
+def main():
+    st.title('Prediction Store Sales')
+    with st.expander("Project's Description"):
+        st.write(''' 
+            The chart plot shows a tipycal retail store dessign.
+            You *must* enter the size and fortniture parameters 
+            to predict the sales of the store
+        ''')
+    image = Image.open('./assets/example_areas.png')
+    st.image(image)
+
+
+def main2():
+    if st.button('RUN',key=5):
+        result = predict_model.predict([[square_meters,stockroom_meters,
+        salesfloor_meters,useless_meters,
+        shelfs,double_shelfs,registers,
+        entrances]])
+
+        if square_meters != 0 and salesfloor_meters != 0 and shelfs != 0 and double_shelfs != 0 and registers != 0 and entrances != 0:
+            st.title(str(result[0]/1000000)[0:5] + ' Millions')
+            st.success('Super, You did it')
+            st.balloons()
+        else:
+            st.error('You should input all the parameters')
+
+if __name__ == '__main__':
+    
+    with st.sidebar:
+
+        image2 = Image.open('./assets/logo.png')
+        with open('./assets/model.pkl','rb') as f:
+            predict_model = pickle.load(f)
+            st.image(image2)
+
+        st.header('Input store parameters:')
+        st.write(''' ***Obligatory*''') 
+
+        square_meters = st.number_input('How size is the store? **')
+        st.write(square_meters,' m2')
+
+
+        stockroom_meters = st.number_input('How size is the stockroom?')
+        st.write(stockroom_meters,' m2')
+
+        salesfloor_meters = st.number_input('How size is the sales floor? **')
+        st.write(salesfloor_meters,' m2')
+
+        useless_meters = st.number_input('How size is the useless area?')
+        st.write(useless_meters,' m2')
+
+        shelfs = st.number_input('How many shelfs? **')
+        st.write(shelfs,' shelfs')
+
+        double_shelfs = st.number_input('How many double shelfs? **')
+        st.write(double_shelfs,' double shelfs')
+
+        registers = st.number_input('How many registers? **')
+        st.write(registers)
+
+        entrances = st.number_input('How long is the entrance? **')
+        st.write(entrances,' ml')
+
+    main()
+    main2()
+
+    
+
