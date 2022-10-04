@@ -4,7 +4,24 @@ import streamlit as st
 import pickle
 from PIL import Image
 
+# Paths
+current_dir = Path(__file__).parent if "__file__" in locals() else Path.cwd()
+css_file = current_dir/'styles'/'main.css'
 
+#Settings
+PAGE_TITLE = 'Sales Prediction'
+SOCIAL_MEDIA = {
+    'Linkedin': 'https://www.linkedin.com/in/arqhp/',
+    'Github': 'https://github.com/Izxyx',
+    'Instagram': 'https://www.instagram.com/arq_v/'
+}
+
+# Configuration
+st.set_page_config(page_title=PAGE_TITLE,page_icon=':dashboard:')
+
+# Header
+with open(css_file) as f:
+    st.markdown('<style>{}</style>'.format(f.read()),unsafe_allow_html=True)
 
 # Main
 def main():
@@ -28,7 +45,6 @@ def main2():
 
         if square_meters != 0 and salesfloor_meters != 0 and shelfs != 0 and double_shelfs != 0 and registers != 0 and entrances != 0:
             st.title(str(result[0]/1000000)[0:5] + ' Millions')
-            st.success('Super, You did it')
             st.balloons()
         else:
             st.error('You should input all the parameters')
