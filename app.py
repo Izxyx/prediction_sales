@@ -19,10 +19,6 @@ SOCIAL_MEDIA = {
 # Configuration
 st.set_page_config(page_title=PAGE_TITLE,page_icon=':dashboard:')
 
-# Header
-with open(css_file) as f:
-    st.markdown('<style>{}</style>'.format(f.read()),unsafe_allow_html=True)
-
 # Main
 def main():
     st.title('Prediction Store Sales')
@@ -35,7 +31,6 @@ def main():
     image = Image.open('./assets/example_areas.png')
     st.image(image)
 
-
 def main2():
     if st.button('RUN',key=5):
         result = predict_model.predict([[square_meters,stockroom_meters,
@@ -45,6 +40,7 @@ def main2():
 
         if square_meters != 0 and salesfloor_meters != 0 and shelfs != 0 and double_shelfs != 0 and registers != 0 and entrances != 0:
             st.title(str(result[0]/1000000)[0:5] + ' Millions')
+            st.success('Super, You did it')
             st.balloons()
         else:
             st.error('You should input all the parameters')
