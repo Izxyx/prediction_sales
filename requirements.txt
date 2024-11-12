@@ -1,4 +1,4 @@
 Pillow
-streamlit
+streamlit==1.0.2
 scikit-learn
 altair
