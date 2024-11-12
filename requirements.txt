@@ -1,11 +1,4 @@
-Pillow==9.2.0
-streamlit==1.13.0
-scikit-learn==1.0.2
-altair<5
-
-pandas
-plotly
+Pillow
 streamlit
-yfinance
-pandas-datareader
-prophet
+scikit-learn
+altair
